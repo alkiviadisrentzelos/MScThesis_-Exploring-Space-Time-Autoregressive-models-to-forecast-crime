@@ -34,18 +34,18 @@ cr2<-cr1a %>% filter(cr1a$ARREST_DATE <= enddate)  # it refers to year 2016
 # Step 4: Clear data
 test3a<-cr2
 size3a<-nrow(test3a[,2])
-test3b<-test3a[-which(is.na(test3a$OFNS_DESC)),]
-cr3<-test3b[(!(test3b$OFNS_DESC=="F.C.A. P.I.N.O.S.")),]
+test3b<-test3a[-which(is.na(test3a$OFNS_DESC)),] # delete empty rows
+cr3<-test3b[(!(test3b$OFNS_DESC=="F.C.A. P.I.N.O.S.")),] # delete strange data
 
-# Step 5: Division of crimes to totally three types (Duration 3h) #
+# Step 5: Division of crimes to totally three types #
 test<-cr3
 test$all<-1
 size4<-nrow(test)
 #####
 for(i in 1:size4){
   if(test[i,2]=="ABORTION"){
-    test$p[i]<-0
-    test$v[i]<-0
+    test$p[i]<-0 # property = p
+    test$v[i]<-0 # violent = v
   }else if(test[i,2]=="ADMINISTRATIVE CODE"){
     test$p[i]<-0
     test$v[i]<-0
@@ -253,27 +253,26 @@ cr4<-test
 t6<-cr4
 size6<-nrow(t6)
 for(i in 1:size6){
-  t6$Week[i]<- week(t6$ARREST_DATE[i]) #new attribute which shows the week
+  t6$Week[i]<- week(t6$ARREST_DATE[i]) # create new attribute which shows the week
 }
 
 # Step 7: Setting the appropriate Projected Coordinate Reference System (PCRS)
 forcrimes <- t6
-crimes16 <- forcrimes %>% st_as_sf(coords=c("X_COORD_CD","Y_COORD_CD"), crs=102718, remove=FALSE) #to get crime incidents as spatial features
+crimes16 <- forcrimes %>% st_as_sf(coords=c("X_COORD_CD","Y_COORD_CD"), crs=102718, remove=FALSE) # to get crime incidents as spatial features
 
 # Step 8: Spatial Join & Step 9: Summarizing the amount of crime incidents per study zones and per crime type
-
 Result16z<-data.frame()
 forfinal16z<-data.frame()
-cr6<-t6[,c(2:10)] # keep only what is need
+cr6<-t6[,c(2:10)] # keep only what is required
 crimes16 <- cr6 %>% st_as_sf(coords=c("X_COORD_CD","Y_COORD_CD"), remove=FALSE) 
 
 for (i in 1:53) {
   Cr16W53z<-crimes16[(crimes16$Week==toString(i)),] 
-  #spatial join
+  # spatial join
   SJ16W53z<-st_join(zp1, Cr16W53z)
-  #group based on the geometry of points for crimes15w1
+  # group based on the geometry of points for crimes15w1
   SUM16W53z <- SJ16W53z %>%
-    group_by(ZIPCODE) %>% #group by the unique code of zipcodes
+    group_by(ZIPCODE) %>% # group by the unique code of zipcodes
     summarize(sumall = sum(all), sump = sum(p), sumv = sum(v))  # all= all crimes, p=property and v=violent
   sizesum<-nrow(SUM16W53z)
   for (j in 1:sizesum){
@@ -302,7 +301,7 @@ for (i in 1:sizesum){
 forfinal16z <- st_centroid(Result16_2z) # calculate the centroid & keep the other attributes
 coordsz <- st_centroid(Result16_2z) %>% st_coordinates() %>% as.data.frame() # the X,Y coordinates
 final16z <- bind_cols(forfinal16z, coordsz) # group required attributes
-st_write(final16z, "final16z.shp") #export data as shape file
+st_write(final16z, "final16z.shp") # export data as shape file
 
 # The file "final16z" is ready to be used as input for the KDE method
 # The STARMA method requires the followings:
@@ -316,7 +315,7 @@ Zip_pg<-Result16_2z[,c(1,3,5,6)]
 Zip_vg<-Result16_2z[,c(1,4,5,6)]
 
 Zip_all<-as.data.frame(Zip_allg)
-Zip_all<-Zip_all[,c(1,2,4)] #without geometry
+Zip_all<-Zip_all[,c(1,2,4)] # without geometry
 Zip_p<-as.data.frame(Zip_pg)
 Zip_p<-Zip_p[,c(1,2,4)]
 Zip_v<-as.data.frame(Zip_vg)
@@ -324,7 +323,7 @@ Zip_v<-Zip_v[,c(1,2,4)]
 
 # Step 13: Transposition of data in order to have "weeks" as rows and "zipcodes" as columns
 #transpose for type all
-nworking<-nrow(Zip_all) #calculation of number of rows of existing dataset
+nworking<-nrow(Zip_all) # calculation of number of rows of existing dataset
 w<-1 # start from first week
 my.names<-c()
 zipall53<-data.frame()
