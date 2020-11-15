@@ -72,10 +72,15 @@ Step 14*: Extract information for study zones' geometry .
 -Under which evaluation performance metrics are the applied methods being evaluated?
 
 -The "file_2" contains the implementation and evaluation process which is done through suitable performance metrics (Hit rate, PAI) of the STARMA method. The following steps are included:
+
 Step 1: Create neighbors based on the study area: each polygon (study zone) is affected by their 2,3 or 4 neighbors in forecasting.
+
 Step 2: Normalize the data: data should be standard normalized (mean = 0, st. deviaton =1).
+
 Step 3: Estimate the process (get residuals).
+
 Step 4: Classify model: study zones are classified to hotspots (1) or non-hotspots (0) based on a threshold value and once the data have been classified into 5 quantile classes. The threshold value defines the fifth class every time.
+
 Step 5: Evaluation of performance through two widely used metrics (PAI & Hit rate)
 
 
