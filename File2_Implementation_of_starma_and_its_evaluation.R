@@ -14,8 +14,8 @@ klist <- list(order0=diag(248), # the number corresponds to the amount of study 
 all_norm<- stcenter(working_for_Zip_all) #for property type write "working_for_Zip_p" and for violent "working_for_Zip_v"
 
 # Estimate the process
-ar<-1 # Different scenarios are examined (ar=1 for scenarios 0 & 2 and ar=2 for scenarios 1 & 3)
-ma<-2 # Different scenarios are examined (ma=1 for scenarios 0 & 1 and ma=2 for scenarios 2 & 3)
+ar<-1 # Different scenarios are examined (ar=1 for experiments 0 & 2 and ar=2 for experiments 1 & 3)
+ma<-2 # Different scenarios are examined (ma=1 for experiments 0 & 1 and ma=2 for experiments 2 & 3)
 model <- starma(all_norm, klist, ar, ma)
 model
 summary(model)
