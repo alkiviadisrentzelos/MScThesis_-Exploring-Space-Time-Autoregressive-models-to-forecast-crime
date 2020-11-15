@@ -3,7 +3,7 @@ Exploring Space-Time Autoregressive models to forecast crime
 
 This repository was done under the MSc GIMA thesis purposes and it studies the performance of the STARMA method in forecasting crimes based only on spatiotemporal crime data and compared to baseline methods.
 
--What are the other baseline methods?
+#-What are the other baseline methods?
 
 -The other two baseline methods that the STARMA is compared with are a naive one and the Kernel Density Estimation, which even though it is not forecasting method but a simple interpolation one, it is popular used as forecasting from police forces to make patrols. The naive Baseline method is realized without any processing of original input data (real data from one week before) while the KDE method is implemented in ArcGIS once data has been transformed in a suitable form.
 
