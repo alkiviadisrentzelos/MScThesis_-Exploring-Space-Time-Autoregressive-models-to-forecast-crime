@@ -36,20 +36,35 @@ This repository was done under the MSc GIMA thesis purposes and it studies the p
 -What are the preprocessing steps in order to get suitable data to work with?
 
 -The "file_1" contains the preprocessing steps that required in order to manage default data and transform it as input for both the KDE and also the STARMA methods. This preprocess consists of the following steps:
+
 Step 1: Input data (study zipcode zones are included in a rar file while the crime incidents can be downloaded from the official government website of New York Police Department (NYPD).
+
 Step 2: Selection of appropriate attributes 
+
 Step 3: Selection of the study period
+
 Step 4: Clear data
+
 Step 5: Division of crimes to totally three types
+
 Step 6: Extract information about temporal resolution
+
 Step 7: Setting the appropriate Projected Coordinate Reference System (PCRS)
+
 Step 8: Spatial Join 
+
 Step 9: Summarizing the amount of crime incidents per study zones and per crime type
+
 Step 10: Replace the N.A. (non-available) values with zero number of incidents
+
 Step 11: Replacing of polygons with points regarding the geometry of study zones
+
 Step 12*: Make separate files for each type crime
+
 Step 13*: Transposition of data in order to have "weeks" as rows and "zipcodes" as columns
+
 Step 14*: Extract information for study zones' geometry .
+
 (processes with * refer only to starma model). 
 
 
