@@ -1,7 +1,7 @@
 # MScThesis_STARMA_Forecasting_Crime
 Exploring Space-Time Autoregressive models to forecast crime
 
-This repository was done under the MSc GIMA thesis purposes and it studies the performance of the STARMA method in forecasting crimes based only on spatiotemporal crime data and compared to baseline methods.
+This repository was done under the MSc GIMA thesis purposes and it studies the performance of the STARMA (spatiotemporal autoregressive moving average) method in forecasting crimes based only on spatiotemporal crime data and compared to baseline methods.
 
 -What are the other baseline methods?
 
