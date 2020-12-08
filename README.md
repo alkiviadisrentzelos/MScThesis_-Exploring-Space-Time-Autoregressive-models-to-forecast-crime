@@ -11,7 +11,7 @@ This repository was done under the MSc GIMA thesis purposes and it studies the p
 
 -From how long ago (tlag) are the using (past) crime data and in which temporal and spatial scale - resolution is it studied?
 
--The more recent data the more related to the study period. Once this thesis works with weekly data, a week before every time is an associated period to be based on. This study is based on zipcode areas (spatial resolution).  
+-The more recent data the more related to the study period. Once this thesis works with weekly data, a week before every time is an associated period to be based on. This can be seen with a temporal autocorrelation test ("acf") by using all the study period. As for spatial resolution, this study is based on zipcode areas.  
 
 
 
